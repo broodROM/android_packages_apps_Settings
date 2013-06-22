@@ -1596,5 +1596,7 @@
             </intent-filter>
         </receiver>
 
+        <activity android:name=".cyanogenmod.QuickSettings" />
+
     </application>
 </manifest>

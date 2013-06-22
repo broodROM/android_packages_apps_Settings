@@ -26,8 +26,8 @@
     <item quantity="one" msgid="5295687242294085452">"Ora ti manca <xliff:g id="STEP_COUNT">%1$d</xliff:g> passaggio per diventare uno sviluppatore."</item>
     <item quantity="other" msgid="6722953419953594148">"Ora ti mancano <xliff:g id="STEP_COUNT">%1$d</xliff:g> passaggi per diventare uno sviluppatore."</item>
   </plurals>
-    <string name="show_dev_on" msgid="1110711554982716293">"Ora sei uno sviluppatore."</string>
-    <string name="show_dev_already" msgid="2151632240145446227">"Non è necessario, sei già uno sviluppatore."</string>
+    <string name="show_dev_on" msgid="1110711554982716293">"Hai abilitato le impostazioni da sviluppatore."</string>
+    <string name="show_dev_already" msgid="2151632240145446227">"Non è necessario, hai già abilitato le impostazioni da sviluppatore."</string>
     <string name="header_category_wireless_networks" msgid="4944823405420438623">"WIRELESS E RETI"</string>
     <string name="header_category_device" msgid="5781174212691167553">"DISPOSITIVO"</string>
     <string name="header_category_personal" msgid="6225932173498802187">"PERSONALE"</string>
@@ -1311,7 +1311,7 @@
     <string name="accessibility_toggle_screen_magnification_preference_title" msgid="2472285215737820469">"Ingrandimento schermo"</string>
     <string name="accessibility_toggle_screen_magnification_auto_update_preference_title" msgid="7218498768415430963">"Aggiorn. autom. ingrandim. schermo"</string>
     <string name="accessibility_toggle_screen_magnification_auto_update_preference_summary" msgid="4392059334816220155">"Aggiorna ingrandimento schermo per transizioni app"</string>
-    <string name="accessibility_power_button_ends_call_prerefence_title" msgid="6673851944175874235">"Chiudi chiamata con pulsante ON/OFF"</string>
+    <string name="accessibility_power_button_ends_call_prerefence_title" msgid="6673851944175874235">"Tasto ON/OFF termina chiamata"</string>
     <string name="accessibility_toggle_speak_password_preference_title" msgid="5986628515113204844">"Pronuncia le password"</string>
     <string name="accessibility_long_press_timeout_preference_title" msgid="6708467774619266508">"Ritardo tocco e pressione"</string>
     <string name="accessibility_toggle_script_injection_preference_title" msgid="7950932054266694403">"Migliora l\'accessibilità web"</string>
@@ -1559,7 +1559,7 @@
     <string name="wifi_setup_description_connecting" msgid="2793554932006756795">"La connessione può richiedere qualche minuto..."</string>
     <string name="wifi_setup_description_connected" msgid="5235991893829582459">"Tocca "<b>"Avanti"</b>" per continuare con la configurazione."\n\n"Tocca "<b>"Indietro"</b>" per connetterti a un\'altra rete Wi-Fi."</string>
     <string name="accessibility_sync_enabled" msgid="558480439730263116">"Sincronizzazione abilitata"</string>
-    <string name="accessibility_sync_disabled" msgid="1741194106479011384">"Sincronizzazione disabilata"</string>
+    <string name="accessibility_sync_disabled" msgid="1741194106479011384">"Sincronizzazione disattivata"</string>
     <string name="accessibility_sync_error" msgid="8703299118794272041">"Errore di sincronizzazione."</string>
     <string name="sync_failed" msgid="1696499856374109647">"Sincronizzazione non riuscita"</string>
     <string name="sync_active" msgid="8476943765960863040">"Sincronizzazione attiva"</string>
@@ -1729,7 +1729,7 @@
     <string name="data_usage_received_sent" msgid="5039699009276621757">"<xliff:g id="RECEIVED">%1$s</xliff:g> ricevuti, <xliff:g id="SENT">%2$s</xliff:g> inviati"</string>
     <string name="data_usage_total_during_range" msgid="4091294280619255237">"<xliff:g id="RANGE">%2$s</xliff:g>: utilizzati circa <xliff:g id="TOTAL">%1$s</xliff:g>."</string>
     <string name="data_usage_total_during_range_mobile" product="tablet" msgid="5961720793603268572">"<xliff:g id="RANGE">%2$s</xliff:g>: utilizzati quasi <xliff:g id="TOTAL">%1$s</xliff:g>, misurati dal tablet. I dati possono differire da quelli dell\'operatore."</string>
-    <string name="data_usage_total_during_range_mobile" product="default" msgid="1625833170144610767">"<xliff:g id="RANGE">%2$s</xliff:g>: utilizzati quasi <xliff:g id="TOTAL">%1$s</xliff:g>, misurati dal tel. I dati possono differire da quelli dell\'operatore."</string>
+    <string name="data_usage_total_during_range_mobile" product="default" msgid="1625833170144610767">"<xliff:g id="RANGE">%2$s</xliff:g>: utilizzati quasi <xliff:g id="TOTAL">%1$s</xliff:g>, misurati dal telefono. I dati possono differire da quelli dell\'operatore."</string>
     <string name="data_usage_metered_title" msgid="6204750602856383278">"Hotspot mobili"</string>
     <string name="data_usage_metered_body" msgid="2446827764036316131">"Seleziona le reti Wi-Fi che che sono hotspot mobili. Alle applicazioni può essere impedito l\'uso di queste reti quando in background. Le applicazioni potrebbero inoltre avvisarti prima che utilizzi queste reti per download di grandi dimensioni."</string>
     <string name="data_usage_metered_mobile" msgid="5423305619126978393">"Reti mobili"</string>

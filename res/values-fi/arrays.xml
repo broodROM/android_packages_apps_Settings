@@ -107,13 +107,6 @@
     <item msgid="5660739516542454527">"Estetty"</item>
     <item msgid="1805837518286731242">"Vältetään huonoa yhteyttä tilapäisesti"</item>
   </string-array>
-    <!-- no translation found for wifi_security:0 (8491993170197127709) -->
-    <!-- no translation found for wifi_security:1 (6524315248437318854) -->
-    <!-- no translation found for wifi_security:2 (1532568756571457140) -->
-    <!-- no translation found for wifi_security:3 (3620707702811709779) -->
-    <!-- no translation found for wifi_security_no_eap:0 (2084555984818107151) -->
-    <!-- no translation found for wifi_security_no_eap:1 (397579322683471524) -->
-    <!-- no translation found for wifi_security_no_eap:2 (1968820975358150484) -->
   <string-array name="wifi_eap_method">
     <item msgid="1160193392455075561">"PEAP"</item>
     <item msgid="7981731051382306293">"TLS"</item>
