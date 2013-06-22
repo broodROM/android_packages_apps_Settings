@@ -39,6 +39,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.INetworkManagementService;
@@ -120,7 +121,7 @@ public class Settings extends PreferenceActivity
             R.id.system_section,
             R.id.date_time_settings,
             R.id.about_settings,
-            R.id.accessibility_settings
+            R.id.accessibility_settings,
     };
 
     private SharedPreferences mDevelopmentPreferences;
@@ -375,10 +376,23 @@ public class Settings extends PreferenceActivity
 
     @Override
     public Intent onBuildStartFragmentIntent(String fragmentName, Bundle args,
+            CharSequence titleText, CharSequence shortTitleText) {
+        Intent intent = super.onBuildStartFragmentIntent(fragmentName, args,
+                titleText, shortTitleText);
+        onBuildStartFragmentIntentHelper(fragmentName, intent);
+        return intent;
+    }
+
+    @Override
+    public Intent onBuildStartFragmentIntent(String fragmentName, Bundle args,
             int titleRes, int shortTitleRes) {
         Intent intent = super.onBuildStartFragmentIntent(fragmentName, args,
                 titleRes, shortTitleRes);
+        onBuildStartFragmentIntentHelper(fragmentName, intent);
+        return intent;
+    }
 
+    private void onBuildStartFragmentIntentHelper(String fragmentName, Intent intent) {
         // some fragments want to avoid split actionbar
         if (DataUsageSummary.class.getName().equals(fragmentName) ||
                 PowerUsageSummary.class.getName().equals(fragmentName) ||
@@ -400,9 +414,7 @@ public class Settings extends PreferenceActivity
                 ZonePicker.class.getName().equals(fragmentName)) {
             intent.putExtra(EXTRA_CLEAR_UI_OPTIONS, true);
         }
-
         intent.setClass(this, SubSettings.class);
-        return intent;
     }
 
     /**
@@ -428,6 +440,7 @@ public class Settings extends PreferenceActivity
             int id = (int) header.id;
             if (id == R.id.operator_settings || id == R.id.manufacturer_settings) {
                 Utils.updateHeaderToSpecificActivityFromMetaDataOrRemove(this, target, header);
+           
             } else if (id == R.id.wifi_settings) {
                 // Remove WiFi Settings if WiFi service is not available.
                 if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_WIFI)) {
@@ -462,6 +475,8 @@ public class Settings extends PreferenceActivity
                 if (!showDev) {
                     target.remove(i);
                 }
+            } else if (id == R.id.superuser) {
+
             }
 
             if (target.get(i) == header
@@ -585,6 +600,7 @@ public class Settings extends PreferenceActivity
 
         private final WifiEnabler mWifiEnabler;
         private final BluetoothEnabler mBluetoothEnabler;
+
         private AuthenticatorHelper mAuthHelper;
 
         private static class HeaderViewHolder {
@@ -599,7 +615,8 @@ public class Settings extends PreferenceActivity
         static int getHeaderType(Header header) {
             if (header.fragment == null && header.intent == null) {
                 return HEADER_TYPE_CATEGORY;
-            } else if (header.id == R.id.wifi_settings || header.id == R.id.bluetooth_settings) {
+            } else if (header.id == R.id.wifi_settings
+                    || header.id == R.id.bluetooth_settings) {
                 return HEADER_TYPE_SWITCH;
             } else {
                 return HEADER_TYPE_NORMAL;
@@ -652,7 +669,7 @@ public class Settings extends PreferenceActivity
             int headerType = getHeaderType(header);
             View view = null;
 
-            if (convertView == null) {
+            if (convertView == null || headerType == HEADER_TYPE_SWITCH) {
                 holder = new HeaderViewHolder();
                 switch (headerType) {
                     case HEADER_TYPE_CATEGORY:
@@ -699,8 +716,8 @@ public class Settings extends PreferenceActivity
                     // Would need a different treatment if the main menu had more switches
                     if (header.id == R.id.wifi_settings) {
                         mWifiEnabler.setSwitch(holder.switch_);
-                    } else {
-                        mBluetoothEnabler.setSwitch(holder.switch_);
+                    } else if (header.id == R.id.bluetooth_settings) {
+                        mBluetoothEnabler.setSwitch(holder.switch_); 
                     }
                     // No break, fall through on purpose to update common fields
 
@@ -837,5 +854,10 @@ public class Settings extends PreferenceActivity
     public static class TextToSpeechSettingsActivity extends Settings { /* empty */ }
     public static class AndroidBeamSettingsActivity extends Settings { /* empty */ }
     public static class WifiDisplaySettingsActivity extends Settings { /* empty */ }
+    public static class AnonymousStatsActivity extends Settings { /* empty */ }
+    public static class ApnSettingsActivity extends Settings { /* empty */ }
+    public static class ApnEditorActivity extends Settings { /* empty */ }
+    public static class QuietHoursSettingsActivity extends Settings { /* empty */ }
     public static class DreamSettingsActivity extends Settings { /* empty */ }
+    public static class SystemSettingsActivity extends Settings { /* empty */ }
 }

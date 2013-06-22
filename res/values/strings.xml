@@ -13,6 +13,8 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+
+
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Strings for Dialog yes button -->
     <string name="yes">"Yes"</string>
@@ -29,6 +31,8 @@
     <!-- Strings for Dialog deny button -->
     <string name="deny">Deny</string>
 
+
+    <string name="superuser">Superuser</string>
     <!-- Device Info --> <skip />
     <!-- Device Info screen. Used for a status item's value when the proper value is not known -->
     <string name="device_info_default">Unknown</string>
