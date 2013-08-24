@@ -60,6 +60,7 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
     private static final String KEY_CURRENT_INPUT_METHOD = "current_input_method";
     private static final String KEY_INPUT_METHOD_SELECTOR = "input_method_selector";
     private static final String KEY_USER_DICTIONARY_SETTINGS = "key_user_dictionary_settings";
+    private static final String KEY_STYLUS_ICON_ENABLED = "stylus_icon_enabled";
     // false: on ICS or later
     private static final boolean SHOW_INPUT_METHOD_SWITCHER_SETTINGS = false;
 
@@ -71,6 +72,7 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
         "auto_replace", "auto_caps", "auto_punctuate",
     };
 
+    private CheckBoxPreference mStylusIconEnabled;
     private int mDefaultInputMethodSelectorVisibility = 0;
     private ListPreference mShowInputMethodSelectorPref;
     private PreferenceCategory mKeyboardSettingsCategory;
@@ -169,6 +171,8 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
         mIm = (InputManager)getActivity().getSystemService(Context.INPUT_SERVICE);
         updateInputDevices();
 
+        mStylusIconEnabled = (CheckBoxPreference) findPreference(KEY_STYLUS_ICON_ENABLED);
+
         // Spell Checker
         final Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.setClass(getActivity(), SpellCheckersSettingsActivity.class);
@@ -225,6 +229,7 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
     public void onResume() {
         super.onResume();
 
+        mSettingsObserver.resume();
         mIm.registerInputDeviceListener(this, null);
 
         if (!mIsOnlyImeSettings) {
@@ -237,7 +242,16 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
                 // and want to pretend that the language is valid for all locales.
                 // We need a way to support languages that aren't tied to a particular
                 // locale instead of hiding the locale qualifier.
-                if (hasOnlyOneLanguageInstance(language,
+                if (language.equals("zz")) {
+                    String country = conf.locale.getCountry();
+                    if (country.equals("ZZ")) {
+                        localeString = "[Developer] Accented English (zz_ZZ)";
+                    } else if (country.equals("ZY")) {
+                        localeString = "[Developer] Fake Bi-Directional (zz_ZY)";
+                    } else {
+                        localeString = "";
+                    }
+                } else if (hasOnlyOneLanguageInstance(language,
                         Resources.getSystem().getAssets().getLocales())) {
                     localeString = conf.locale.getDisplayLanguage(conf.locale);
                 } else {
@@ -254,6 +268,11 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
             if (SHOW_INPUT_METHOD_SWITCHER_SETTINGS) {
                 mShowInputMethodSelectorPref.setOnPreferenceChangeListener(this);
             }
+        }
+
+        if (mStylusIconEnabled != null) {
+            mStylusIconEnabled.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                    Settings.System.STYLUS_ICON_ENABLED, 0) == 1);
         }
 
         // Hard keyboard
@@ -279,6 +298,7 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
         super.onPause();
 
         mIm.unregisterInputDeviceListener(this);
+        mSettingsObserver.pause();
 
         if (SHOW_INPUT_METHOD_SWITCHER_SETTINGS) {
             mShowInputMethodSelectorPref.setOnPreferenceChangeListener(null);
@@ -308,7 +328,10 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
         if (Utils.isMonkeyRunning()) {
             return false;
         }
-        if (preference instanceof PreferenceScreen) {
+        if (preference == mStylusIconEnabled) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.STYLUS_ICON_ENABLED, mStylusIconEnabled.isChecked() ? 1 : 0);
+        } else if (preference instanceof PreferenceScreen) {
             if (preference.getFragment() != null) {
                 // Fragment will be handled correctly by the super class.
             } else if (KEY_CURRENT_INPUT_METHOD.equals(preference.getKey())) {
@@ -537,17 +560,27 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
     }
 
     private class SettingsObserver extends ContentObserver {
+        private Context mContext;
+
         public SettingsObserver(Handler handler, Context context) {
             super(handler);
-            final ContentResolver cr = context.getContentResolver();
+            mContext = context;
+        }
+
+        @Override public void onChange(boolean selfChange) {
+            updateCurrentImeName();
+        }
+
+        public void resume() {
+            final ContentResolver cr = mContext.getContentResolver();
             cr.registerContentObserver(
                     Settings.Secure.getUriFor(Settings.Secure.DEFAULT_INPUT_METHOD), false, this);
             cr.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.SELECTED_INPUT_METHOD_SUBTYPE), false, this);
         }
 
-        @Override public void onChange(boolean selfChange) {
-            updateCurrentImeName();
+        public void pause() {
+            mContext.getContentResolver().unregisterContentObserver(this);
         }
     }
 }

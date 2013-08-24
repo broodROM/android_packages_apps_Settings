@@ -17,8 +17,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/about_settings">
 
-       <PreferenceScreen android:key="broodrom_logo"
-                          android:layout="@layout/logo" />
+        <!-- System update settings - launches activity -->
+        <PreferenceScreen android:key="system_update_settings"
+                android:title="@string/system_update_settings_list_item_title" 
+                android:summary="@string/system_update_settings_list_item_summary">
+            <intent android:action="android.settings.SYSTEM_UPDATE_SETTINGS" />
+        </PreferenceScreen>
+
 
         <PreferenceScreen android:key="additional_system_update_settings"
                           android:title="@string/additional_system_update_settings_list_item_title">
@@ -35,16 +40,6 @@
                     android:targetPackage="com.android.settings"
                     android:targetClass="com.android.settings.deviceinfo.Status" />
         </PreferenceScreen>
-
-	<PreferenceScreen android:key="broodromstats"
-                android:title="@string/brstats" 
-                android:summary="@string/brstatssum">
-            <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="android.romstats"
-                    android:targetClass="android.romstats.AnonymousStats" />
-        </PreferenceScreen>
-
-
 
         <!-- Legal Information -->
         <PreferenceScreen
@@ -94,6 +89,12 @@
         </PreferenceScreen>
         -->
 
+        <PreferenceScreen
+                android:key="regulatory_info"
+                android:title="@string/regulatory_information">
+            <intent android:action="android.settings.SHOW_REGULATORY_INFO" />
+        </PreferenceScreen>
+
         <!-- Device hardware model -->
         <Preference android:key="device_model" 
                 style="?android:preferenceInformationStyle"
@@ -106,24 +107,12 @@
                 android:title="@string/firmware_version"
                 android:summary="@string/device_info_default"/>
 
-	<!-- Device cpu info -->
-        <Preference android:key="device_cpu"
-                style="?android:preferenceInformationStyle"
-                android:title="@string/cpu_info"
-                android:summary="@string/device_info_default"/>
-
-        <!-- Device mem info -->
-        <Preference android:key="device_memory"
-                style="?android:preferenceInformationStyle"
-                android:title="@string/mem_info"
-                android:summary="@string/device_info_default"/>
-
         <!-- Device FCC equipment id -->
         <Preference android:key="fcc_equipment_id"
                 style="?android:preferenceInformationStyle"
                 android:title="@string/fcc_equipment_id"
                 android:summary="@string/device_info_default"/>
-                
+
         <!-- Device Baseband version -->
         <Preference android:key="baseband_version" 
                 style="?android:preferenceInformationStyle"
@@ -142,9 +131,10 @@
                 android:title="@string/build_number"
                 android:summary="@string/device_info_default"/>
 
-     <Preference android:key="broodrom_version" 
+        <!-- SELinux status information -->
+        <Preference android:key="selinux_status"
                 style="?android:preferenceInformationStyle"
-                android:title="@string/broodromversion"
-                android:summary="@string/broodromversionsummary"/>
+                android:title="@string/selinux_status"
+                android:summary="@string/selinux_status_enforcing"/>
 
 </PreferenceScreen>

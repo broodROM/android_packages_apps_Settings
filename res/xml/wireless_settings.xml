@@ -64,6 +64,11 @@
             android:targetClass="com.android.phone.MobileNetworkSettings" />
     </PreferenceScreen>
 
+    <Preference
+        android:key="manage_mobile_plan"
+        android:title="@string/manage_mobile_plan_title"
+        android:persistent="false" />
+
     <CheckBoxPreference
         android:key="toggle_nsd"
         android:title="@string/nsd_quick_toggle_title"
@@ -84,13 +89,5 @@
             android:targetPackage="com.android.cellbroadcastreceiver"
             android:targetClass="com.android.cellbroadcastreceiver.CellBroadcastSettings" />
     </PreferenceScreen>
-
-    <PreferenceScreen android:key="stk"
-                android:title="@string/stk" 
-                android:summary="@string/stksum">
-            <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="com.android.stk"
-                    android:targetClass="com.android.stk.StkLauncherActivity" />
-        </PreferenceScreen>
 
 </PreferenceScreen>
