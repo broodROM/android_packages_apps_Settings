@@ -1933,9 +1933,19 @@
     <string name="kernel_version">Kernel version</string>
     <!-- About phone screen,  setting option name-->
     <string name="build_number">Build number</string>
+    <!-- About broodROM Settings -->
+    <string name="broodromsettings">broodROM Settings</string>
+    <!-- About broodROM Settings -->
+    <string name="broodromversion">broodROM AOSP Release 1</string>
+    <!-- About broodROM Settings -->
+    <string name="broodromversionsummary">Unknown</string>
+    <!-- Labels for custom titles -->
+    <string name="themes_settings_title">Theme Manager</string>
+    <string name="dspman_settings_title">DSP Manager</string>
+    <string name="bakman_settings_title">Backup Manager</string>
+    <string name="broodparts_settings_title">broodParts S4</string>
     <!-- About phone screen,  setting option name-->
     <string name="selinux_status">SELinux status</string>
-
     <!-- About phone screen, show when a value of some status item is unavailable. -->
     <string name="device_info_not_available">Not available</string>
     <!-- About phone screen, phone status screen title -->

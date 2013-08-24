@@ -167,6 +167,54 @@
             android:action="android.settings.ADD_ACCOUNT_SETTINGS"/>
     </header>
 
+    <!-- broodROM AOSP -->
+    <header android:id="@+id/broodrom_settings"
+        android:title="@string/broodromsettings" />
+
+  <!-- broodParts -->
+  <header
+        android:id="@+id/broodrom_prefs"
+        android:icon="@drawable/ic_sysbar_quicksettings"
+        android:title="@string/broodparts_settings_title">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="com.broodplank.broodparts"
+            android:targetClass="com.broodplank.broodparts.mainActivity" />
+    </header>
+
+  <!-- Themes -->
+    <header
+        android:id="@+id/themes_settings"
+        android:icon="@drawable/ic_settings_themes"
+        android:title="@string/themes_settings_title">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="com.tmobile.themechooser"
+            android:targetClass="com.tmobile.themechooser.ThemeChooser" />
+    </header>
+
+<!-- DSP Manager -->
+    <header
+        android:id="@+id/dspman"
+        android:icon="@drawable/dspmanicon"
+        android:title="@string/dspman_settings_title">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="com.bel.android.dspmanager"
+            android:targetClass="com.bel.android.dspmanager.activity.DSPManager" />
+    </header>
+
+ <!-- Backup Manager -->
+    <header
+        android:id="@+id/bakman"
+        android:icon="@drawable/ic_settings_backup"
+        android:title="@string/bakman_settings_title">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="com.broodplank.backupman"
+            android:targetClass="com.broodplank.backupman.mainActivity" />
+    </header>
+
     <!-- SYSTEM -->
     <header android:id="@+id/system_section"
         android:title="@string/header_category_system" />
